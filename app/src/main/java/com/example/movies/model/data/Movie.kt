@@ -1,7 +1,10 @@
 package com.example.movies.model.data
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 class Movie(
     @SerializedName("adult") var adult: Boolean? = null,
     @SerializedName("backdrop_path") var backdropPath: String? = null,
@@ -17,4 +20,4 @@ class Movie(
     @SerializedName("video") var video: Boolean? = null,
     @SerializedName("vote_average") var voteAverage: Double? = null,
     @SerializedName("vote_count") var voteCount: Int? = null,
-)
+) : Parcelable

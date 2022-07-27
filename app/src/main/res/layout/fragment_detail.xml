@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.movies.model.data.PosterSize" />
+
+        <variable
+            name="movie"
+            type="com.example.movies.model.data.Movie" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.detail.DetailFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/bigPosterImage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/poster_description"
+                android:minHeight="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:posterSize="@{PosterSize.BIG_SIZE}"
+                bind:posterUrl="@{movie.posterPath}" />
+
+            <ImageView
+                android:id="@+id/favoriteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/edgeMargin"
+                android:clickable="true"
+                android:contentDescription="@string/favorite_description"
+                android:focusable="true"
+                android:src="@drawable/ic_favorite_border"
+                app:layout_constraintBottom_toBottomOf="@id/bigPosterImage"
+                app:layout_constraintEnd_toEndOf="@id/bigPosterImage"
+                app:layout_constraintTop_toBottomOf="@id/bigPosterImage" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.35" />
+
+            <TextView
+                style="@style/LabelTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/edgeMargin"
+                android:text="@string/title_label"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/favoriteBtn" />
+
+            <TextView
+                android:id="@+id/titleTv"
+                style="@style/ValueTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/edgeMargin"
+                android:text="@{movie.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toBottomOf="@+id/favoriteBtn" />
+
+            <TextView
+                style="@style/MarginedLabelTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/original_label"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTv" />
+
+            <TextView
+                android:id="@+id/originalTitleTv"
+                style="@style/MarginedValueTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{movie.originalTitle}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toBottomOf="@+id/titleTv" />
+
+            <TextView
+                style="@style/MarginedLabelTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/rating_label"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/originalTitleTv" />
+
+            <TextView
+                android:id="@+id/ratingTv"
+                style="@style/MarginedValueTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{movie.voteAverage.toString()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toBottomOf="@+id/originalTitleTv" />
+
+            <TextView
+                style="@style/MarginedLabelTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/date_label"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingTv" />
+
+            <TextView
+                android:id="@+id/releaseDateTv"
+                style="@style/MarginedValueTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{movie.releaseDate}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toBottomOf="@+id/ratingTv" />
+
+            <TextView
+                android:id="@+id/overviewLabel"
+                style="@style/MarginedLabelTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/overview_label"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/releaseDateTv" />
+
+            <TextView
+                android:id="@+id/overviewTv"
+                style="@style/MarginedValueTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/edgeMargin"
+                android:text="@{movie.overview}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/overviewLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

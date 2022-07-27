@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DefaultTv" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textSize">@dimen/defaultTextSize</item>
+    </style>
+
+    <style name="LabelTv" parent="DefaultTv">
+        <item name="android:textColor">@color/accent_yellow</item>
+    </style>
+
+    <style name="ValueTv" parent="DefaultTv">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:text">Hello there</item>
+    </style>
+
+    <style name="MarginedLabelTv" parent="LabelTv">
+        <item name="android:layout_marginStart">@dimen/edgeMargin</item>
+        <item name="android:layout_marginTop">@dimen/betweenMargin</item>
+    </style>
+
+    <style name="MarginedValueTv" parent="ValueTv">
+        <item name="android:layout_marginTop">@dimen/betweenMargin</item>
+        <item name="android:layout_marginEnd">@dimen/edgeMargin</item>
+    </style>
+</resources>

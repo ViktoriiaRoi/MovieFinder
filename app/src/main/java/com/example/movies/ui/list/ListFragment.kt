@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movies.databinding.FragmentListBinding
 import com.example.movies.model.data.ApiResponse
+import com.example.movies.model.data.Movie
 import com.example.movies.model.network.RetrofitService
 import com.example.movies.ui.adapters.MovieAdapter
 import retrofit2.Call
@@ -44,7 +46,6 @@ class ListFragment : Fragment() {
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                 Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
             }
-
         })
 
         return binding.root
@@ -54,5 +55,13 @@ class ListFragment : Fragment() {
         val recycler = binding.movieRecycler
         recycler.layoutManager = GridLayoutManager(requireContext(), 2)
         recycler.adapter = adapter
+
+        adapter.onPosterClickListener = object : MovieAdapter.OnPosterClickListener {
+            override fun onPosterClick(movie: Movie) {
+                val action = ListFragmentDirections.actionListFragmentToDetailFragment(movie)
+                findNavController().navigate(action)
+            }
+
+        }
     }
 }

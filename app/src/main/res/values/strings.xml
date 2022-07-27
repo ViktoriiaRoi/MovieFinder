@@ -6,4 +6,11 @@
     <string name="play_description">Play trailer</string>
     <string name="favorite_description">Button for favorite</string>
 
+    <!-- Labels -->
+    <string name="title_label">Title:</string>
+    <string name="original_label">Original title:</string>
+    <string name="rating_label">Rating:</string>
+    <string name="date_label">Release Date:</string>
+    <string name="overview_label">Overview:</string>
+
 </resources>
