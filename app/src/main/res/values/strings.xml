@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Movies</string>
+
+    <!-- Content Descriptions -->
+    <string name="poster_description">The poster of movie</string>
+    <string name="play_description">Play trailer</string>
+    <string name="favorite_description">Button for favorite</string>
+
+</resources>
