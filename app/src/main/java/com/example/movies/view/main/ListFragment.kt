@@ -8,24 +8,20 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.movies.Contract
 import com.example.movies.databinding.FragmentListBinding
-import com.example.movies.model.data.ApiResponse
+import com.example.movies.model.Model
 import com.example.movies.model.data.Movie
-import com.example.movies.model.network.RetrofitService
+import com.example.movies.presenter.Presenter
 import com.example.movies.view.adapters.MovieAdapter
-import retrofit2.Call
-import retrofit2.Response
 
 
-class ListFragment : Fragment() {
-
-    companion object {
-        private const val API_KEY = "032c9cedbfb4a49a4ef35763a4f395b1"
-    }
+class ListFragment : Fragment(), Contract.View {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
 
+    private var presenter: Contract.Presenter? = null
     private val adapter = MovieAdapter()
 
     override fun onCreateView(
@@ -35,19 +31,8 @@ class ListFragment : Fragment() {
         _binding = FragmentListBinding.inflate(inflater, container, false)
 
         setupRecycler()
-
-        val service = RetrofitService.getService()
-        service.getMovies(API_KEY).enqueue(object : retrofit2.Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                response.body()?.let {
-                    adapter.movieList = it.results
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
-            }
-        })
+        presenter = Presenter(this, Model())
+        presenter?.requestData()
 
         return binding.root
     }
@@ -62,8 +47,20 @@ class ListFragment : Fragment() {
                 val action = MainFragmentDirections.actionMainFragmentToDetailFragment(movie)
                 findNavController().navigate(action)
             }
-
         }
+    }
+
+    override fun onResponse(movies: List<Movie>) {
+        adapter.movieList = movies
+    }
+
+    override fun onFailure(t: Throwable) {
+        Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter!!.onDestroy()
     }
 }
 

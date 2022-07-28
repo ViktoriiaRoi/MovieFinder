@@ -1,10 +1,11 @@
-package com.example.movies
+package com.example.movies.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.movies.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
