@@ -2,10 +2,11 @@ package com.example.movies
 
 import com.example.movies.model.data.ApiResponse
 import com.example.movies.model.data.Movie
+import com.example.movies.model.data.Sorting
 
 interface Contract {
     interface Model {
-        fun getMovies(callback: retrofit2.Callback<ApiResponse>)
+        fun getMovies(sorting: Sorting, page: Int, callback: retrofit2.Callback<ApiResponse>)
     }
 
     interface View {
@@ -14,7 +15,7 @@ interface Contract {
     }
 
     interface Presenter {
-        fun requestData()
+        fun requestData(sorting: Sorting, page: Int)
         fun onDestroy()
     }
 }

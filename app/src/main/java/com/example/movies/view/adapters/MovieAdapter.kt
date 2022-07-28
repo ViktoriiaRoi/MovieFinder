@@ -7,11 +7,7 @@ import com.example.movies.databinding.MovieItemBinding
 import com.example.movies.model.data.Movie
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
-    var movieList: List<Movie> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private val movieList: MutableList<Movie> = mutableListOf()
 
     var onPosterClickListener: OnPosterClickListener? = null
     interface OnPosterClickListener {
@@ -40,5 +36,10 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bind(movieList[position])
+    }
+
+    fun addMovies(newMovies: List<Movie>) {
+        movieList.addAll(newMovies)
+        notifyDataSetChanged()
     }
 }

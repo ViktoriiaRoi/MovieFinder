@@ -2,6 +2,7 @@ package com.example.movies.presenter
 
 import com.example.movies.Contract
 import com.example.movies.model.data.ApiResponse
+import com.example.movies.model.data.Sorting
 import retrofit2.Call
 import retrofit2.Response
 
@@ -10,8 +11,8 @@ class Presenter(
     private val model: Contract.Model,
 ) : Contract.Presenter {
 
-    override fun requestData() {
-        model.getMovies(object : retrofit2.Callback<ApiResponse> {
+    override fun requestData(sorting: Sorting, page: Int) {
+        model.getMovies(sorting, page, object : retrofit2.Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 response.body()?.let {
                     view?.onResponse(it.results)
@@ -27,5 +28,4 @@ class Presenter(
     override fun onDestroy() {
         view = null
     }
-
 }
