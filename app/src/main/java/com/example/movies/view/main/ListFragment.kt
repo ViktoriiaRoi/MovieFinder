@@ -1,4 +1,4 @@
-package com.example.movies.ui.list
+package com.example.movies.view.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +12,10 @@ import com.example.movies.databinding.FragmentListBinding
 import com.example.movies.model.data.ApiResponse
 import com.example.movies.model.data.Movie
 import com.example.movies.model.network.RetrofitService
-import com.example.movies.ui.adapters.MovieAdapter
+import com.example.movies.view.adapters.MovieAdapter
 import retrofit2.Call
 import retrofit2.Response
+
 
 class ListFragment : Fragment() {
 
@@ -58,10 +59,11 @@ class ListFragment : Fragment() {
 
         adapter.onPosterClickListener = object : MovieAdapter.OnPosterClickListener {
             override fun onPosterClick(movie: Movie) {
-                val action = ListFragmentDirections.actionListFragmentToDetailFragment(movie)
+                val action = MainFragmentDirections.actionMainFragmentToDetailFragment(movie)
                 findNavController().navigate(action)
             }
 
         }
     }
 }
+

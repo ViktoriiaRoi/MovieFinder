@@ -1,4 +1,4 @@
-package com.example.movies.ui.adapters
+package com.example.movies.view.adapters
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
