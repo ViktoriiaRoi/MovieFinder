@@ -3,7 +3,7 @@ package com.example.movies.model.data
 import com.google.gson.annotations.SerializedName
 
 
-data class ApiResponse (
+data class MovieResponse (
 
     @SerializedName("page"          ) var page         : Int?               = null,
     @SerializedName("results"       ) var results      : List<Movie> = emptyList(),

@@ -19,13 +19,12 @@
         android:layout_height="match_parent"
         tools:context=".view.detail.DetailFragment">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/bigPosterImage"
+                android:id="@+id/big_poster_img"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -38,7 +37,7 @@
                 bind:posterUrl="@{movie.posterPath}" />
 
             <ImageView
-                android:id="@+id/favoriteBtn"
+                android:id="@+id/favorite_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/edgeMargin"
@@ -46,12 +45,12 @@
                 android:contentDescription="@string/favorite_description"
                 android:focusable="true"
                 android:src="@drawable/ic_favorite_border"
-                app:layout_constraintBottom_toBottomOf="@id/bigPosterImage"
-                app:layout_constraintEnd_toEndOf="@id/bigPosterImage"
-                app:layout_constraintTop_toBottomOf="@id/bigPosterImage" />
+                app:layout_constraintBottom_toBottomOf="@id/big_poster_img"
+                app:layout_constraintEnd_toEndOf="@id/big_poster_img"
+                app:layout_constraintTop_toBottomOf="@id/big_poster_img" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guidelineCenter"
+                android:id="@+id/guideline_center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -63,90 +62,90 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/edgeMargin"
                 android:text="@string/title_label"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/favoriteBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/favorite_btn" />
 
             <TextView
-                android:id="@+id/titleTv"
+                android:id="@+id/title_tv"
                 style="@style/ValueTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/edgeMargin"
                 android:text="@{movie.title}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
-                app:layout_constraintTop_toBottomOf="@+id/favoriteBtn" />
+                app:layout_constraintStart_toEndOf="@+id/guideline_center"
+                app:layout_constraintTop_toBottomOf="@+id/favorite_btn" />
 
             <TextView
                 style="@style/MarginedLabelTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/original_label"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleTv" />
+                app:layout_constraintTop_toBottomOf="@+id/title_tv" />
 
             <TextView
-                android:id="@+id/originalTitleTv"
+                android:id="@+id/original_title_tv"
                 style="@style/MarginedValueTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{movie.originalTitle}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
-                app:layout_constraintTop_toBottomOf="@+id/titleTv" />
+                app:layout_constraintStart_toEndOf="@+id/guideline_center"
+                app:layout_constraintTop_toBottomOf="@+id/title_tv" />
 
             <TextView
                 style="@style/MarginedLabelTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/rating_label"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/originalTitleTv" />
+                app:layout_constraintTop_toBottomOf="@+id/original_title_tv" />
 
             <TextView
-                android:id="@+id/ratingTv"
+                android:id="@+id/rating_tv"
                 style="@style/MarginedValueTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{movie.voteAverage.toString()}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
-                app:layout_constraintTop_toBottomOf="@+id/originalTitleTv" />
+                app:layout_constraintStart_toEndOf="@+id/guideline_center"
+                app:layout_constraintTop_toBottomOf="@+id/original_title_tv" />
 
             <TextView
                 style="@style/MarginedLabelTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/date_label"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratingTv" />
+                app:layout_constraintTop_toBottomOf="@+id/rating_tv" />
 
             <TextView
-                android:id="@+id/releaseDateTv"
+                android:id="@+id/release_date_tv"
                 style="@style/MarginedValueTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{movie.releaseDate}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
-                app:layout_constraintTop_toBottomOf="@+id/ratingTv" />
+                app:layout_constraintStart_toEndOf="@+id/guideline_center"
+                app:layout_constraintTop_toBottomOf="@+id/rating_tv" />
 
             <TextView
-                android:id="@+id/overviewLabel"
+                android:id="@+id/overview_label"
                 style="@style/MarginedLabelTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/overview_label"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/releaseDateTv" />
+                app:layout_constraintTop_toBottomOf="@+id/release_date_tv" />
 
             <TextView
-                android:id="@+id/overviewTv"
+                android:id="@+id/overview_tv"
                 style="@style/MarginedValueTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -154,7 +153,26 @@
                 android:text="@{movie.overview}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/overviewLabel" />
+                app:layout_constraintTop_toBottomOf="@id/overview_label" />
+
+            <TextView
+                android:id="@+id/video_label"
+                style="@style/MarginedLabelTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/video_label"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/overview_tv" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/video_recycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/betweenMargin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/video_label" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

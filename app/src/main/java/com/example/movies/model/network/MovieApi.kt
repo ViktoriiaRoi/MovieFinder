@@ -1,8 +1,11 @@
 package com.example.movies.model.network
 
-import com.example.movies.model.data.ApiResponse
+import com.example.movies.model.data.MovieResponse
+import com.example.movies.model.data.Video
+import com.example.movies.model.data.VideoResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieApi {
@@ -20,5 +23,11 @@ interface MovieApi {
         @Query(SORT_PARAM) sorting: String,
         @Query(VOTE_PARAM) vote_count: String,
         @Query(PAGE_PARAM) page: String
-    ): Call<ApiResponse>
+    ): Call<MovieResponse>
+
+    @GET("movie/{id}/videos")
+    fun getVideos(
+        @Path("id") movieId: String,
+        @Query(API_PARAM) apiKey: String
+    ): Call<VideoResponse>
 }

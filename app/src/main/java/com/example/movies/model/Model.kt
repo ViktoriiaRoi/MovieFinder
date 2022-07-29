@@ -1,8 +1,9 @@
 package com.example.movies.model
 
 import com.example.movies.Contract
-import com.example.movies.model.data.ApiResponse
+import com.example.movies.model.data.MovieResponse
 import com.example.movies.model.data.Sorting
+import com.example.movies.model.data.VideoResponse
 import com.example.movies.model.network.RetrofitService
 
 class Model : Contract.Model {
@@ -12,8 +13,13 @@ class Model : Contract.Model {
         private const val VOTE_COUNT = "1000"
     }
 
-    override fun getMovies(sorting: Sorting, page: Int, callback: retrofit2.Callback<ApiResponse>) {
-        val service = RetrofitService.getService()
+    private val service = RetrofitService.getService()
+
+    override fun getMovies(sorting: Sorting, page: Int, callback: retrofit2.Callback<MovieResponse>) {
         service.getMovies(API_KEY, sorting.queryParam, VOTE_COUNT, "$page").enqueue(callback)
+    }
+
+    override fun getVideos(movieId: Int, callback: retrofit2.Callback<VideoResponse>) {
+        service.getVideos("$movieId", API_KEY).enqueue(callback)
     }
 }

@@ -16,16 +16,16 @@ import com.example.movies.databinding.FragmentListBinding
 import com.example.movies.model.Model
 import com.example.movies.model.data.Movie
 import com.example.movies.model.data.Sorting
-import com.example.movies.presenter.Presenter
+import com.example.movies.presenter.ListPresenter
 import com.example.movies.view.adapters.MovieAdapter
 
 
-class ListFragment(val sorting: Sorting) : Fragment(), Contract.View {
+class ListFragment(val sorting: Sorting) : Fragment(), Contract.ListView {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
 
-    private var presenter: Contract.Presenter? = null
+    private var presenter: Contract.ListPresenter? = null
     private val adapter = MovieAdapter()
 
     private var pageNumber = 1
@@ -39,8 +39,8 @@ class ListFragment(val sorting: Sorting) : Fragment(), Contract.View {
         binding.isLoading = isLoading
 
         setupRecycler()
-        presenter = Presenter(this, Model())
-        presenter?.requestData(sorting, pageNumber)
+        presenter = ListPresenter(this, Model())
+        presenter?.requestMovies(sorting, pageNumber)
 
         return binding.root
     }
@@ -60,7 +60,7 @@ class ListFragment(val sorting: Sorting) : Fragment(), Contract.View {
                     if (!isLoading.get()) {
                         isLoading.set(true)
                         isLoading.notifyChange()
-                        presenter?.requestData(sorting, pageNumber)
+                        presenter?.requestMovies(sorting, pageNumber)
                     }
                 }
             }
@@ -74,7 +74,7 @@ class ListFragment(val sorting: Sorting) : Fragment(), Contract.View {
         }
     }
 
-    override fun onResponse(movies: List<Movie>) {
+    override fun onMovieResponse(movies: List<Movie>) {
         adapter.addMovies(movies)
         pageNumber++
         isLoading.set(false)
