@@ -6,14 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.databinding.VideoItemBinding
 import com.example.movies.model.data.Video
 
-class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
-    var videoList: List<Video> = emptyList()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
+class VideoAdapter(val videos: List<Video>) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     var onVideoClickListener: OnVideoClickListener? = null
+
     interface OnVideoClickListener {
         fun onVideoClick(videoKey: String?)
     }
@@ -24,7 +20,7 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
         fun bind(video: Video) {
             binding.video = video
             binding.root.setOnClickListener {
-                onVideoClickListener?.onVideoClick(videoList[adapterPosition].key)
+                onVideoClickListener?.onVideoClick(videos[adapterPosition].key)
             }
             binding.executePendingBindings()
         }
@@ -36,9 +32,9 @@ class VideoAdapter : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
         return VideoViewHolder(binding)
     }
 
-    override fun getItemCount() = videoList.size
+    override fun getItemCount() = videos.size
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        holder.bind(videoList[position])
+        holder.bind(videos[position])
     }
 }

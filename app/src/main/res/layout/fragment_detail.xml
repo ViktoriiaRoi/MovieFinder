@@ -11,6 +11,14 @@
             name="movie"
             type="com.example.movies.model.data.Movie" />
 
+        <variable
+            name="details"
+            type="com.example.movies.model.data.MovieDetails" />
+
+        <variable
+            name="hasVideos"
+            type="Boolean" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -20,7 +28,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/backdrop_img"
@@ -44,7 +52,7 @@
                 app:cardCornerRadius="20dp"
                 app:cardElevation="4dp"
                 app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toBottomOf="@+id/rating_tv"
+                app:layout_constraintBottom_toBottomOf="@+id/year_tv"
                 app:layout_constraintEnd_toEndOf="@id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/backdrop_img">
@@ -65,7 +73,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/lato"
                 android:text="@{movie.title}"
@@ -87,19 +95,85 @@
 
             <TextView
                 android:id="@+id/rating_tv"
-                style="@style/DefaultText"
+                style="@style/TextWithIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:drawableLeft="@drawable/ic_star"
-                android:drawablePadding="8dp"
-                android:gravity="center"
                 android:text="@{movie.voteAverage.toString()}"
-                android:textColor="@color/accent_color"
                 app:layout_constraintStart_toStartOf="@+id/movie_title"
                 app:layout_constraintTop_toBottomOf="@id/movie_title"
                 tools:text="9.5" />
 
+            <TextView
+                android:id="@+id/year_tv"
+                style="@style/TextWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_year"
+                android:text="@{movie.releaseDate.substring(0,4)}"
+                app:layout_constraintStart_toStartOf="@+id/movie_title"
+                app:layout_constraintTop_toBottomOf="@id/rating_tv"
+                tools:text="2022" />
+
+            <TextView
+                android:id="@+id/time_tv"
+                style="@style/TextWithIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_time"
+                android:showView="@{details != null}"
+                android:text='@{details.runtime.toString() + " minutes"}'
+                app:layout_constraintStart_toStartOf="@+id/movie_title"
+                app:layout_constraintTop_toBottomOf="@id/year_tv"
+                tools:text="135 minutes" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="28dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/poster_img">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/genre_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:showView="@{details.genres.size() != 0}" />
+
+                <TextView
+                    style="@style/SectionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:showView="@{movie.overview != null}"
+                    android:text="Overview" />
+
+                <TextView
+                    style="@style/DefaultText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:showView="@{movie.overview != null}"
+                    android:text="@{movie.overview}" />
+
+                <TextView
+                    style="@style/SectionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:showView="@{hasVideos}"
+                    android:text="Videos" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/video_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

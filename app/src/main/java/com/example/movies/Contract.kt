@@ -5,18 +5,17 @@ import com.example.movies.model.data.*
 interface Contract {
     interface Model {
         fun getMovies(sorting: Sorting, page: Int, callback: retrofit2.Callback<MovieResponse>)
+        fun getMovieDetails(movieId: Int, callback: retrofit2.Callback<MovieDetails>)
         fun getVideos(movieId: Int, callback: retrofit2.Callback<VideoResponse>)
     }
 
-    interface BaseView {
+    interface ListView {
+        fun onMovieResponse(movies: List<Movie>)
         fun onFailure(t: Throwable)
     }
 
-    interface ListView : BaseView {
-        fun onMovieResponse(movies: List<Movie>)
-    }
-
-    interface DetailView : BaseView {
+    interface DetailView {
+        fun onDetailsResponse(details: MovieDetails)
         fun onVideoResponse(videos: List<Video>)
     }
 
@@ -29,6 +28,7 @@ interface Contract {
     }
 
     interface DetailPresenter : BasePresenter {
+        fun requestDetails(movieId: Int)
         fun requestVideos(movieId: Int)
     }
 }

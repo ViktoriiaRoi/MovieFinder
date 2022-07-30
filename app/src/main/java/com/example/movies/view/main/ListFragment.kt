@@ -29,6 +29,7 @@ class ListFragment(val sorting: Sorting) : Fragment(), Contract.ListView {
     private val adapter = MovieAdapter()
 
     private var pageNumber = 1
+    private var noInternet = false
     private var isLoading = ObservableBoolean(false)
 
     override fun onCreateView(
@@ -82,9 +83,12 @@ class ListFragment(val sorting: Sorting) : Fragment(), Contract.ListView {
     }
 
     override fun onFailure(t: Throwable) {
-        Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
+        if (!noInternet) {
+            Toast.makeText(requireContext(), "Check your internet connection", Toast.LENGTH_SHORT).show()
+        }
         isLoading.set(false)
         isLoading.notifyChange()
+
     }
 
     override fun onDestroy() {
