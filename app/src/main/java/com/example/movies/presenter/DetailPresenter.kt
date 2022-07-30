@@ -1,6 +1,7 @@
 package com.example.movies.presenter
 
 import com.example.movies.Contract
+import com.example.movies.model.data.CastResponse
 import com.example.movies.model.data.MovieDetails
 import com.example.movies.model.data.VideoResponse
 import retrofit2.Call
@@ -11,7 +12,13 @@ class DetailPresenter(
     private val model: Contract.Model,
 ) : Contract.DetailPresenter {
 
-    override fun requestDetails(movieId: Int) {
+    override fun requestMovieInfo(movieId: Int) {
+        requestDetails(movieId)
+        requestCast(movieId)
+        requestVideos(movieId)
+    }
+
+    private fun requestDetails(movieId: Int) {
         model.getMovieDetails(movieId, object : retrofit2.Callback<MovieDetails> {
             override fun onResponse(call: Call<MovieDetails>, response: Response<MovieDetails>) {
                 response.body()?.let {
@@ -23,7 +30,19 @@ class DetailPresenter(
         })
     }
 
-    override fun requestVideos(movieId: Int) {
+    private fun requestCast(movieId: Int) {
+        model.getCast(movieId, object : retrofit2.Callback<CastResponse> {
+            override fun onResponse(call: Call<CastResponse>, response: Response<CastResponse>) {
+                response.body()?.let {
+                    view?.onCastResponse(it.cast.take(8))
+                }
+            }
+
+            override fun onFailure(call: Call<CastResponse>, t: Throwable) {}
+        })
+    }
+
+    private fun requestVideos(movieId: Int) {
         model.getVideos(movieId, object : retrofit2.Callback<VideoResponse> {
             override fun onResponse(call: Call<VideoResponse>, response: Response<VideoResponse>) {
                 response.body()?.let {

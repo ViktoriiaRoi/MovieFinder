@@ -1,5 +1,6 @@
 package com.example.movies.model.network
 
+import com.example.movies.model.data.CastResponse
 import com.example.movies.model.data.MovieDetails
 import com.example.movies.model.data.MovieResponse
 import com.example.movies.model.data.VideoResponse
@@ -30,6 +31,13 @@ interface MovieApi {
         @Path("id") movieId: String,
         @Query(API_PARAM) apiKey: String
     ): Call<MovieDetails>
+
+
+    @GET("movie/{id}/credits")
+    fun getCast(
+        @Path("id") movieId: String,
+        @Query(API_PARAM) apiKey: String
+    ): Call<CastResponse>
 
     @GET("movie/{id}/videos")
     fun getVideos(

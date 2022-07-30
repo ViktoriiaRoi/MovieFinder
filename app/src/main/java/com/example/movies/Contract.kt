@@ -6,6 +6,7 @@ interface Contract {
     interface Model {
         fun getMovies(sorting: Sorting, page: Int, callback: retrofit2.Callback<MovieResponse>)
         fun getMovieDetails(movieId: Int, callback: retrofit2.Callback<MovieDetails>)
+        fun getCast(movieId: Int, callback: retrofit2.Callback<CastResponse>)
         fun getVideos(movieId: Int, callback: retrofit2.Callback<VideoResponse>)
     }
 
@@ -16,6 +17,7 @@ interface Contract {
 
     interface DetailView {
         fun onDetailsResponse(details: MovieDetails)
+        fun onCastResponse(actors: List<Actor>)
         fun onVideoResponse(videos: List<Video>)
     }
 
@@ -28,7 +30,6 @@ interface Contract {
     }
 
     interface DetailPresenter : BasePresenter {
-        fun requestDetails(movieId: Int)
-        fun requestVideos(movieId: Int)
+        fun requestMovieInfo(movieId: Int)
     }
 }

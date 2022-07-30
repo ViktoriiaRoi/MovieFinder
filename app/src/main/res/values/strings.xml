@@ -13,5 +13,10 @@
     <string name="date_label">Release Date:</string>
     <string name="overview_label">Overview:</string>
     <string name="video_label" translatable="false">Videos:</string>
+    <string name="backdrop_description">Backdrop of movie</string>
+    <string name="overview">Overview</string>
+    <string name="cast">Cast</string>
+    <string name="videos">Videos</string>
+    <string name="actor_description">Photo of actor</string>
 
 </resources>
