@@ -37,17 +37,18 @@ class DetailFragment : Fragment(), Contract.DetailView {
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         binding.movie = args.movie
-
+/*
         setupRecycler()
         presenter = DetailPresenter(this, Model())
 
         args.movie.id?.let {
             presenter?.requestVideos(it)
         }
-
+*/
         return binding.root
     }
 
+    /*
     private fun setupRecycler() {
         val recycler = binding.videoRecycler
         recycler.layoutManager = LinearLayoutManager(requireContext())
@@ -59,7 +60,7 @@ class DetailFragment : Fragment(), Contract.DetailView {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             }
         }
-    }
+    }*/
 
     override fun onVideoResponse(videos: List<Video>) {
         adapter.videoList = videos
@@ -71,6 +72,6 @@ class DetailFragment : Fragment(), Contract.DetailView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter!!.onDestroy()
+       // presenter!!.onDestroy()
     }
 }

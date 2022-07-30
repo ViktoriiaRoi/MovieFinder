@@ -83,6 +83,8 @@ class ListFragment(val sorting: Sorting) : Fragment(), Contract.ListView {
 
     override fun onFailure(t: Throwable) {
         Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
+        isLoading.set(false)
+        isLoading.notifyChange()
     }
 
     override fun onDestroy() {
