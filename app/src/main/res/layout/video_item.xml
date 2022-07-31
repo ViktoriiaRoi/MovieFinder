@@ -5,30 +5,69 @@
 
     <data>
 
+        <import type="com.example.movies.model.data.ImageType" />
+
         <variable
             name="video"
             type="com.example.movies.model.data.Video" />
 
     </data>
 
-    <androidx.cardview.widget.CardView
-        style="@style/LabelStyle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/video_thumbnail"
+            style="@style/LabelStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:openYoutube="@{video.key}"
+            app:layout_constraintEnd_toStartOf="@id/video_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:imagePath="@{video.key}"
+                android:imageType="@{ImageType.THUMBNAIL}"
+                tools:src="@drawable/default_thumbnail" />
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_circle"
+            android:translationZ="2dp"
+            app:layout_constraintBottom_toBottomOf="@id/video_thumbnail"
+            app:layout_constraintEnd_toEndOf="@id/video_thumbnail"
+            app:layout_constraintStart_toStartOf="@id/video_thumbnail"
+            app:layout_constraintTop_toTopOf="@id/video_thumbnail" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/video_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.45" />
 
         <TextView
-            android:id="@+id/videoNameTv"
             style="@style/DefaultText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawablePadding="8dp"
-            android:gravity="center_vertical"
-            android:padding="8dp"
+            android:layout_marginStart="12dp"
             android:text="@{video.name}"
-            app:drawableLeftCompat="@drawable/ic_play_circle"
-            tools:text="Video Name" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/video_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="guygbkj jhglb jhbl jhb kuhn kjb khb kub" />
 
-    </androidx.cardview.widget.CardView>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

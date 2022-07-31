@@ -34,7 +34,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/poster_description"
                 android:imageType="@{ImageType.POSTER}"
-                android:imageUrl="@{movie.posterPath}"
+                android:imagePath="@{movie.posterPath}"
                 tools:src="@drawable/ic_launcher_background" />
 
         </androidx.cardview.widget.CardView>

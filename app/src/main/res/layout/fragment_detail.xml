@@ -42,7 +42,7 @@
                 android:alpha="0.75"
                 android:contentDescription="@string/backdrop_description"
                 android:imageType="@{ImageType.BACKDROP}"
-                android:imageUrl="@{movie.backdropPath}"
+                android:imagePath="@{movie.backdropPath}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -67,7 +67,7 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/poster_description"
                     android:imageType="@{ImageType.POSTER}"
-                    android:imageUrl="@{movie.posterPath}"
+                    android:imagePath="@{movie.posterPath}"
                     tools:src="@drawable/default_poster" />
 
             </androidx.cardview.widget.CardView>
@@ -124,7 +124,6 @@
                 app:layout_constraintTop_toBottomOf="@id/year_tv"
                 tools:text="135 minutes"
                 app:drawableLeftCompat="@drawable/ic_time" />
-
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -183,8 +182,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/video_recycler"
                     android:layout_width="match_parent"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="18dp"
                     android:layout_marginTop="8dp" />
 
             </LinearLayout>

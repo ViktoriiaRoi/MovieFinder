@@ -8,20 +8,11 @@ import com.example.movies.model.data.Video
 
 class VideoAdapter(val videos: List<Video>) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
-    var onVideoClickListener: OnVideoClickListener? = null
-
-    interface OnVideoClickListener {
-        fun onVideoClick(videoKey: String?)
-    }
-
     inner class VideoViewHolder(private val binding: VideoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(video: Video) {
             binding.video = video
-            binding.root.setOnClickListener {
-                onVideoClickListener?.onVideoClick(videos[adapterPosition].key)
-            }
             binding.executePendingBindings()
         }
     }

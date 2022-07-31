@@ -1,18 +1,13 @@
 package com.example.movies.view.detail
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout.HORIZONTAL
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.Contract
 import com.example.movies.databinding.FragmentDetailBinding
 import com.example.movies.model.Model
@@ -34,9 +29,6 @@ class DetailFragment : Fragment(), Contract.DetailView {
 
     private var presenter: Contract.DetailPresenter? = null
 
-    companion object {
-        private const val BASE_YOUTUBE_URL = "https://www.youtube.com/watch?v="
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,10 +45,10 @@ class DetailFragment : Fragment(), Contract.DetailView {
     }
 
 
-
     private fun setupGenreRecycler(genres: List<Genre>) {
         val recycler = binding.genreRecycler
-        recycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recycler.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recycler.adapter = GenreAdapter(genres)
     }
 
@@ -69,14 +61,7 @@ class DetailFragment : Fragment(), Contract.DetailView {
     private fun setupVideoRecycler(videos: List<Video>) {
         val recycler = binding.videoRecycler
         recycler.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = VideoAdapter(videos)
-        adapter.onVideoClickListener = object : VideoAdapter.OnVideoClickListener {
-            override fun onVideoClick(videoKey: String?) {
-                val url = BASE_YOUTUBE_URL + videoKey
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-            }
-        }
-        recycler.adapter = adapter
+        recycler.adapter = VideoAdapter(videos)
     }
 
     override fun onDetailsResponse(details: MovieDetails) {
