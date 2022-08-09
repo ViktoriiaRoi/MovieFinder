@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.databinding.VideoItemBinding
 import com.example.movies.model.data.Video
 
-class VideoAdapter(val videos: List<Video>) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
+class VideoAdapter(private val videos: List<Video>) :
+    RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     inner class VideoViewHolder(private val binding: VideoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

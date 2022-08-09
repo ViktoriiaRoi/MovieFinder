@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.databinding.ActorItemBinding
-import com.example.movies.databinding.VideoItemBinding
 import com.example.movies.model.data.Actor
-import com.example.movies.model.data.Video
 
-class ActorAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
+class ActorAdapter(private val actors: List<Actor>) :
+    RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
 
     inner class ActorViewHolder(private val binding: ActorItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

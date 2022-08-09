@@ -7,7 +7,10 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import com.example.movies.model.data.ImageType
+import com.example.movies.model.data.Movie
+import com.example.movies.view.main.MainFragmentDirections
 import com.squareup.picasso.Picasso
 
 class BindingAdapters {
@@ -26,6 +29,15 @@ class BindingAdapters {
         @JvmStatic
         fun showView(view: View, show: Boolean) {
             view.visibility = if (show) View.VISIBLE else View.GONE
+        }
+
+        @BindingAdapter("android:openDetail")
+        @JvmStatic
+        fun openDetail(view: View, movie: Movie) {
+            view.setOnClickListener {
+                val action = MainFragmentDirections.actionMainFragmentToDetailFragment(movie)
+                view.findNavController().navigate(action)
+            }
         }
 
         @BindingAdapter("android:openYoutube")

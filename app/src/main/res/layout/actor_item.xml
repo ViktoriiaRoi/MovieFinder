@@ -34,8 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/actor_description"
-                android:imageType="@{ImageType.ACTOR}"
                 android:imagePath="@{actor.profilePath}"
+                android:imageType="@{ImageType.ACTOR}"
                 android:scaleType="centerCrop"
                 android:scrollY="-10dp"
                 tools:src="@drawable/default_actor" />

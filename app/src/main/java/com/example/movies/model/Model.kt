@@ -9,13 +9,12 @@ class Model : Contract.Model {
 
     companion object {
         private const val API_KEY = "032c9cedbfb4a49a4ef35763a4f395b1"
-        private const val VOTE_COUNT = "1000"
     }
 
     private val service = RetrofitService.getService()
 
     override fun getMovies(sorting: Sorting, page: Int, callback: Callback<MovieResponse>) {
-        service.getMovies(API_KEY, sorting.queryParam, VOTE_COUNT, "$page").enqueue(callback)
+        service.getMovies(API_KEY, sorting.queryParam, sorting.voteCount, "$page").enqueue(callback)
     }
 
     override fun getMovieDetails(movieId: Int, callback: Callback<MovieDetails>) {

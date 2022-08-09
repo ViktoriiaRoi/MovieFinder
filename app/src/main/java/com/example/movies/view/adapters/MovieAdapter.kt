@@ -9,19 +9,11 @@ import com.example.movies.model.data.Movie
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     private val movieList: MutableList<Movie> = mutableListOf()
 
-    var onPosterClickListener: OnPosterClickListener? = null
-    interface OnPosterClickListener {
-        fun onPosterClick(movie: Movie)
-    }
-
     inner class MovieViewHolder(private val binding: MovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(movie: Movie) {
             binding.movie = movie
-            binding.root.setOnClickListener {
-                onPosterClickListener?.onPosterClick(movie)
-            }
             binding.executePendingBindings()
         }
     }
@@ -41,5 +33,9 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     fun addMovies(newMovies: List<Movie>) {
         movieList.addAll(newMovies)
         notifyDataSetChanged()
+    }
+
+    fun clearMovies() {
+        movieList.clear()
     }
 }

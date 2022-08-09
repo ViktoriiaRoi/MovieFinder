@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:openDetail="@{movie}">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/poster_card"
@@ -33,9 +34,9 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/poster_description"
-                android:imageType="@{ImageType.POSTER}"
                 android:imagePath="@{movie.posterPath}"
-                tools:src="@drawable/ic_launcher_background" />
+                android:imageType="@{ImageType.POSTER}"
+                tools:src="@drawable/default_poster" />
 
         </androidx.cardview.widget.CardView>
 
@@ -53,6 +54,5 @@
             tools:text="Movie Title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>

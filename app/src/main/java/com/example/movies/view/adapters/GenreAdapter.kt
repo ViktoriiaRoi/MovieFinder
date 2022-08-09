@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.databinding.GenreItemBinding
-import com.example.movies.databinding.VideoItemBinding
 import com.example.movies.model.data.Genre
-import com.example.movies.model.data.Video
 
-class GenreAdapter(private val genres: List<Genre>) : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
+class GenreAdapter(private val genres: List<Genre>) :
+    RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
 
     inner class GenreViewHolder(private val binding: GenreItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

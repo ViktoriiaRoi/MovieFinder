@@ -67,7 +67,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/video_guideline"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="guygbkj jhglb jhbl jhb kuhn kjb khb kub" />
+            tools:text="Video name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
