@@ -1,13 +1,14 @@
 package com.example.movies
 
 import com.example.movies.model.data.*
+import io.reactivex.rxjava3.core.Single
 
 interface Contract {
     interface Model {
-        fun getMovies(sorting: Sorting, page: Int, callback: retrofit2.Callback<MovieResponse>)
-        fun getMovieDetails(movieId: Int, callback: retrofit2.Callback<MovieDetails>)
-        fun getCast(movieId: Int, callback: retrofit2.Callback<CastResponse>)
-        fun getVideos(movieId: Int, callback: retrofit2.Callback<VideoResponse>)
+        fun getMovies(sorting: Sorting, page: Int): Single<MovieResponse>
+        fun getMovieDetails(movieId: Int): Single<MovieDetails>
+        fun getCast(movieId: Int): Single<CastResponse>
+        fun getVideos(movieId: Int): Single<VideoResponse>
     }
 
     interface ListView {

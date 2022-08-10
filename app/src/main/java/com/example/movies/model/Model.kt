@@ -1,9 +1,8 @@
 package com.example.movies.model
 
 import com.example.movies.Contract
-import com.example.movies.model.data.*
+import com.example.movies.model.data.Sorting
 import com.example.movies.model.network.RetrofitService
-import retrofit2.Callback
 
 class Model : Contract.Model {
 
@@ -13,19 +12,15 @@ class Model : Contract.Model {
 
     private val service = RetrofitService.getService()
 
-    override fun getMovies(sorting: Sorting, page: Int, callback: Callback<MovieResponse>) {
-        service.getMovies(API_KEY, sorting.queryParam, sorting.voteCount, "$page").enqueue(callback)
-    }
+    override fun getMovies(sorting: Sorting, page: Int) =
+        service.getMovies(API_KEY, sorting.queryParam, sorting.voteCount, "$page")
 
-    override fun getMovieDetails(movieId: Int, callback: Callback<MovieDetails>) {
-        service.getMovieDetails("$movieId", API_KEY).enqueue(callback)
-    }
+    override fun getMovieDetails(movieId: Int) =
+        service.getMovieDetails("$movieId", API_KEY)
 
-    override fun getCast(movieId: Int, callback: Callback<CastResponse>) {
-        service.getCast("$movieId", API_KEY).enqueue(callback)
-    }
+    override fun getCast(movieId: Int) =
+        service.getCast("$movieId", API_KEY)
 
-    override fun getVideos(movieId: Int, callback: Callback<VideoResponse>) {
-        service.getVideos("$movieId", API_KEY).enqueue(callback)
-    }
+    override fun getVideos(movieId: Int) =
+        service.getVideos("$movieId", API_KEY)
 }

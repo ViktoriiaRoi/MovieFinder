@@ -10,8 +10,11 @@ This is an android application for finding movies to watch.
 This app is designed as MVP architecture pattern
 
 ### Model
- * __Retrofit__ - to get data from api
-  
+ * __Retrofit2__ - to get data from api
+
+### Presenter
+* __RxJava3__ - to perform asynchronous api requests
+
 ### View
 * __Picasso__ - to show picture by url
 * __ViewPager2__ - to slide screens

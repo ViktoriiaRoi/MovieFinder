@@ -1,31 +1,28 @@
 package com.example.movies.presenter
 
 import com.example.movies.Contract
-import com.example.movies.model.data.MovieResponse
 import com.example.movies.model.data.Sorting
-import retrofit2.Call
-import retrofit2.Response
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ListPresenter(
     private var view: Contract.ListView?,
     private val model: Contract.Model,
 ) : Contract.ListPresenter {
+    private var disposable: Disposable? = null
 
     override fun requestMovies(sorting: Sorting, page: Int) {
-        model.getMovies(sorting, page, object : retrofit2.Callback<MovieResponse> {
-            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                response.body()?.let {
-                    view?.onMovieResponse(it.results)
-                }
-            }
-
-            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                view?.onFailure(t)
-            }
-        })
+        disposable = model.getMovies(sorting, page)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { view?.onMovieResponse(it.results) },
+                { view?.onFailure(it) })
     }
 
     override fun onDestroy() {
         view = null
+        disposable?.dispose()
     }
 }
