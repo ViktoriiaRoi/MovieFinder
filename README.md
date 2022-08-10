@@ -21,3 +21,6 @@ This app is designed as MVP architecture pattern
 * __SwipeRefreshLayout__
 * __Navigation component__ - to navigate between fragments
 * __Data binding__ - UI interaction
+
+## Demo
+<img src="demo/movie_demo.gif"/>
