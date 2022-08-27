@@ -28,9 +28,11 @@ interface Contract {
 
     interface ListPresenter : BasePresenter {
         fun requestMovies(sorting: Sorting, page: Int)
+        fun attachView(listView: ListView)
     }
 
     interface DetailPresenter : BasePresenter {
         fun requestMovieInfo(movieId: Int)
+        fun attachView(detailView: DetailView)
     }
 }

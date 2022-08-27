@@ -1,5 +1,6 @@
 package com.example.movies.view.detail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movies.Contract
+import com.example.movies.dagger.App
 import com.example.movies.databinding.FragmentDetailBinding
 import com.example.movies.model.Model
 import com.example.movies.model.data.Actor
@@ -19,7 +21,10 @@ import com.example.movies.presenter.DetailPresenter
 import com.example.movies.view.adapters.ActorAdapter
 import com.example.movies.view.adapters.GenreAdapter
 import com.example.movies.view.adapters.VideoAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DetailFragment : Fragment(), Contract.DetailView {
 
     private val args by navArgs<DetailFragmentArgs>()
@@ -27,8 +32,13 @@ class DetailFragment : Fragment(), Contract.DetailView {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private var presenter: Contract.DetailPresenter? = null
+    @Inject
+    lateinit var presenter: Contract.DetailPresenter
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        presenter.attachView(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,14 +46,12 @@ class DetailFragment : Fragment(), Contract.DetailView {
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         binding.movie = args.movie
-        presenter = DetailPresenter(this, Model())
 
         args.movie.id?.let {
-            presenter?.requestMovieInfo(it)
+            presenter.requestMovieInfo(it)
         }
         return binding.root
     }
-
 
     private fun setupGenreRecycler(genres: List<Genre>) {
         val recycler = binding.genreRecycler
@@ -81,6 +89,6 @@ class DetailFragment : Fragment(), Contract.DetailView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter!!.onDestroy()
+        presenter.onDestroy()
     }
 }

@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface MovieApi {
+interface MovieService {
 
     companion object {
         private const val API_PARAM = "api_key"
