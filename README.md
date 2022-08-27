@@ -9,6 +9,8 @@ This is an android application for finding movies to watch.
 ## Implementation
 This app is designed as MVP architecture pattern
 
+* __Dagger Hilt__ - to implement dependency injection
+
 ### Model
  * __Retrofit2__ - to get data from api
 
